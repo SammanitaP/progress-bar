@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Progress Bar</title>
+	<link rel="stylesheet" href="css/jquery-ui.css">
+	<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			jQuery( "#progressbar1,#progressbar2,#progressbar3" ).progressbar({
+				value: 37
+			});
+			jQuery(".selectBar").change(function(){
+			var selectedBar = jQuery('.selectBar').find(":selected").addClass("active").val();
+			jQuery(".progressbar").siblings().removeClass("active");
+			jQuery("#"+selectedBar).addClass("active");
+			 jQuery("#plus10").on("click", function(){
+			 	jQuery('.selectBar').children().siblings().removeClass("active");
+				var valueNow = parseInt(jQuery("#"+selectedBar).attr("value"), 10) + 10;
+				jQuery("#"+selectedBar).attr("value", valueNow);
+			 	jQuery("#"+selectedBar+".active").progressbar({
+					value: jQuery("#"+selectedBar+".active").progressbar( "option", "value") + 10
+			 	});
+				if(valueNow > 100) {
+					jQuery("#"+selectedBar).children().css( "background-color", "#ff0000" );
+				} else {
+					jQuery("#"+selectedBar).children().css( "background-color", "#e9e9e9" );
+				}
+			 });
+			 jQuery("#plus25").on("click", function(){
+				var valueNow = parseInt(jQuery("#"+selectedBar).attr("value"), 10) + 25;
+				jQuery("#"+selectedBar).attr("value", valueNow);
+			 	jQuery("#"+selectedBar+".active").progressbar({
+			  		value: jQuery("#"+selectedBar+".active").progressbar( "option", "value") + 25
+
+			 	});
+				if(valueNow > 100) {
+					jQuery("#"+selectedBar).children().css( "background-color", "#ff0000" );
+				} else {
+					jQuery("#"+selectedBar).children().css( "background-color", "#e9e9e9" );
+				}
+			 });
+			 jQuery("#minus50").on("click", function(){
+				var valueNow = parseInt(jQuery("#"+selectedBar).attr("value"), 10) - 50;
+				jQuery("#"+selectedBar).attr("value", valueNow);
+				if(valueNow < 100) {
+					jQuery("#"+selectedBar+".active").progressbar({
+						value: jQuery("#"+selectedBar+".active").progressbar( "option", "value") - 50
+
+					});
+				}
+				if(valueNow > 100) {
+					jQuery("#"+selectedBar).children().css( "background-color", "#ff0000" );
+				} else {
+					jQuery("#"+selectedBar).children().css( "background-color", "#e9e9e9" );
+				}
+			 });
+			});
+			
+  		});
+		
+	</script>
+</head>
+<body>
+	<div id="progressbar1" value="37" class="progressbar"></div><br>
+	<div id="progressbar2" value="37" class="progressbar"></div><br>
+	<div id="progressbar3" value="37" class="progressbar"></div><br>
+	<select class="selectBar">
+		<option selected="selected">Select Progress Bar!!</option>
+		<option class="progressbar1">progressbar1</option>
+		<option class="progressbar2">progressbar2</option>
+		<option class="progressbar3">progressbar3</option>
+	</select>
+	<button id="plus10">+10</button>
+	<button id="plus25">+25</button>
+	<button id="minus50">-50</button>
+</body>
+</html>
