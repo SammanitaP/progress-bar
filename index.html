@@ -10,13 +10,16 @@
 			jQuery( "#progressbar1,#progressbar2,#progressbar3" ).progressbar({
 				value: 37
 			});
+			var selectedBar = '';
 			jQuery(".selectBar").change(function(){
-			var selectedBar = jQuery('.selectBar').find(":selected").addClass("active").val();
-			jQuery(".progressbar").siblings().removeClass("active");
-			jQuery("#"+selectedBar).addClass("active");
-			 jQuery("#plus10").on("click", function(){
+				selectedBar = jQuery('.selectBar').find(":selected").addClass("active").val();
+				jQuery(".progressbar").siblings().removeClass("active");
+				jQuery("#"+selectedBar).addClass("active");
+			});
+			jQuery("#plus10").on("click", function(){
 			 	jQuery('.selectBar').children().siblings().removeClass("active");
-				var valueNow = parseInt(jQuery("#"+selectedBar+".active").attr("value"), 10) + 10;
+				var valueNow = parseInt(jQuery("#"+selectedBar+".active").attr("value")) + 10;
+				alert(valueNow);
 				jQuery("#"+selectedBar+".active").attr("value", valueNow);
 			 	jQuery("#"+selectedBar+".active").progressbar({
 					value: valueNow
@@ -30,7 +33,7 @@
 			 });
 			 jQuery("#plus25").on("click", function(){
 				jQuery('.selectBar').children().siblings().removeClass("active");
-				var valueNow = parseInt(jQuery("#"+selectedBar+".active").attr("value"), 10) + 25;
+				var valueNow = parseInt(jQuery("#"+selectedBar+".active").attr("value")) + 25;
 				jQuery("#"+selectedBar+".active").attr("value", valueNow);
 			 	jQuery("#"+selectedBar+".active").progressbar({
 					value: valueNow
@@ -48,7 +51,7 @@
 					var valueNow = 0;
 					jQuery("#"+selectedBar+".active").attr("value", valueNow);
 				} else {
-					var valueNow = parseInt(jQuery("#"+selectedBar+".active").attr("value"), 10) - 50;
+					var valueNow = parseInt(jQuery("#"+selectedBar+".active").attr("value")) - 50;
 					jQuery("#"+selectedBar+".active").attr("value", valueNow);
 				}
 				
@@ -64,7 +67,6 @@
 				}
 				jQuery("#"+selectedBar+".active").children().html(valueNow+"%");
 			 });
-			});
 			
   		});
 		
