@@ -16,44 +16,53 @@
 			jQuery("#"+selectedBar).addClass("active");
 			 jQuery("#plus10").on("click", function(){
 			 	jQuery('.selectBar').children().siblings().removeClass("active");
-				var valueNow = parseInt(jQuery("#"+selectedBar).attr("value"), 10) + 10;
-				jQuery("#"+selectedBar).attr("value", valueNow);
+				var valueNow = parseInt(jQuery("#"+selectedBar+".active").attr("value"), 10) + 10;
+				jQuery("#"+selectedBar+".active").attr("value", valueNow);
 			 	jQuery("#"+selectedBar+".active").progressbar({
-					value: jQuery("#"+selectedBar+".active").progressbar( "option", "value") + 10
+					value: valueNow
 			 	});
 				if(valueNow > 100) {
-					jQuery("#"+selectedBar).children().css( "background-color", "#ff0000" );
+					jQuery("#"+selectedBar+".active").children().css( "background-color", "#ff0000" );
 				} else {
-					jQuery("#"+selectedBar).children().css( "background-color", "#e9e9e9" );
+					jQuery("#"+selectedBar+".active").children().css( "background-color", "#e9e9e9" );
 				}
+				jQuery("#"+selectedBar+".active").children().html(valueNow+"%");
 			 });
 			 jQuery("#plus25").on("click", function(){
-				var valueNow = parseInt(jQuery("#"+selectedBar).attr("value"), 10) + 25;
-				jQuery("#"+selectedBar).attr("value", valueNow);
+				jQuery('.selectBar').children().siblings().removeClass("active");
+				var valueNow = parseInt(jQuery("#"+selectedBar+".active").attr("value"), 10) + 25;
+				jQuery("#"+selectedBar+".active").attr("value", valueNow);
 			 	jQuery("#"+selectedBar+".active").progressbar({
-			  		value: jQuery("#"+selectedBar+".active").progressbar( "option", "value") + 25
-
+					value: valueNow
 			 	});
 				if(valueNow > 100) {
-					jQuery("#"+selectedBar).children().css( "background-color", "#ff0000" );
+					jQuery("#"+selectedBar+".active").children().css( "background-color", "#ff0000" );
 				} else {
-					jQuery("#"+selectedBar).children().css( "background-color", "#e9e9e9" );
+					jQuery("#"+selectedBar+".active").children().css( "background-color", "#e9e9e9" );
 				}
+				jQuery("#"+selectedBar+".active").children().html(valueNow+"%");
 			 });
 			 jQuery("#minus50").on("click", function(){
-				var valueNow = parseInt(jQuery("#"+selectedBar).attr("value"), 10) - 50;
-				jQuery("#"+selectedBar).attr("value", valueNow);
+				jQuery('.selectBar').children().siblings().removeClass("active");
+				if(parseInt(jQuery("#"+selectedBar+".active").attr("value"), 10) < 50) {
+					var valueNow = 0;
+					jQuery("#"+selectedBar+".active").attr("value", valueNow);
+				} else {
+					var valueNow = parseInt(jQuery("#"+selectedBar+".active").attr("value"), 10) - 50;
+					jQuery("#"+selectedBar+".active").attr("value", valueNow);
+				}
+				
 				if(valueNow < 100) {
 					jQuery("#"+selectedBar+".active").progressbar({
-						value: jQuery("#"+selectedBar+".active").progressbar( "option", "value") - 50
-
+						value: valueNow
 					});
 				}
 				if(valueNow > 100) {
-					jQuery("#"+selectedBar).children().css( "background-color", "#ff0000" );
+					jQuery("#"+selectedBar+".active").children().css( "background-color", "#ff0000" );
 				} else {
-					jQuery("#"+selectedBar).children().css( "background-color", "#e9e9e9" );
+					jQuery("#"+selectedBar+".active").children().css( "background-color", "#e9e9e9" );
 				}
+				jQuery("#"+selectedBar+".active").children().html(valueNow+"%");
 			 });
 			});
 			
